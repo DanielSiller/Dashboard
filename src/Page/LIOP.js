@@ -26,7 +26,7 @@ export default function LIOP() {
         >
           <OverviewContainer>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
-              Supply Chain <Label fontsize="14">- Visão Geral [30 dias]</Label>
+              Supply Chain <Label fontsize="14">- Visão Geral 30 dias</Label>
             </Label>
 
             <ImagensContainer>
@@ -148,7 +148,7 @@ export default function LIOP() {
                 color="000"
                 marginbottom="15"
               >
-                Total [30 Dias] - orders_30
+                Total 30 Dias - orders_30
               </Label>
               <Label
                 fontweight="bold"
@@ -156,13 +156,13 @@ export default function LIOP() {
                 color="000"
                 marginbottom="15"
               >
-                Total [Mês Atual] - orders_month
+                Total Mês Atual - orders_month
               </Label>
               <Label fontweight="bold" fontsize="14" color="000">
-                Entregues [30 Dias] - delivered
+                Entregues 30 Dias - delivered
               </Label>
               <Label fontweight="bold" fontsize="14" color="000">
-                Entregues [Mês Atual] - delivered_month
+                Entregues Mês Atual - delivered_month
               </Label>
             </CardContainer>
           </OverviewContainer>

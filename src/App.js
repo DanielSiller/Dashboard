@@ -1,10 +1,9 @@
 import React from "react";
 import "./App.css";
-
-import LIOP from "./Page/LIOP";
+import Routes from "./routes";
 
 function App() {
-  return <LIOP />;
+  return <Routes />;
 }
 
 export default App;

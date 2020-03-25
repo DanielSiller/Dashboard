@@ -5,6 +5,8 @@ export const Container = styled.div`
   grid-gap: ${props => (props.gap ? `${props.gap}px` : "")};
   grid-template-columns: ${props =>
     props.gridTemplateColumns ? props.gridTemplateColumns : ""};
+  grid-template-rows: ${props =>
+    props.gridTemplateRows ? props.gridTemplateRows : ""};
   margin: ${props => (props.margin ? props.margin : "0")};
   margin-top: ${props => (props.marginTop ? `${props.marginTop}px` : "0")};
   border-radius: ${props => (props.radius ? `${props.radius}px` : "5px")};
@@ -19,12 +21,18 @@ export const Container = styled.div`
   justify-items: ${props =>
     props.justifyItems ? props.justifyItems : "initial"};
   text-align: ${props => (props.textAlign ? props.textAlign : "initial")};
+  min-height: ${props => (props.minHeight ? `${props.minHeight}%` : "")};
+
   .img {
     max-width: 60px;
   }
   .arrow {
     max-width: 30px;
     margin: 0 45px;
+  }
+  .image {
+    max-width: 150px;
+    min-height: 30px;
   }
 `;
 
@@ -53,10 +61,11 @@ export const MyOverviewContainer = styled.div`
   border-radius: 5px;
   background-color: #fff;
   border: 1px solid #ddd;
-  padding: 11px;
+  padding: 10px;
   box-shadow: 0 4px 4px #c5c5c5;
   align-items: ${props => (props.alignItems ? props.alignItems : "")};
   text-align: ${props => (props.textAlign ? props.textAlign : "initial")};
+  min-height: ${props => (props.minHeight ? `${props.minHeight}%` : "")};
 `;
 
 export const MyImagensContainer = styled.div`

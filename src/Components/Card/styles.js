@@ -66,6 +66,9 @@ export const MyOverviewContainer = styled.div`
   align-items: ${props => (props.alignItems ? props.alignItems : "")};
   text-align: ${props => (props.textAlign ? props.textAlign : "initial")};
   min-height: ${props => (props.minHeight ? `${props.minHeight}%` : "")};
+  height: ${props => (props.height ? `${props.height}px` : "")};
+  justify-content: ${props =>
+    props.justifyContent ? props.justifyContent : "initial"};
 `;
 
 export const MyImagensContainer = styled.div`

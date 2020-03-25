@@ -1,11 +1,12 @@
 import React from "react";
-import { Container, Label } from "./styles";
+import { Container, Label, MyLink } from "./styles";
 
 const Header = ({ unidade, date, name, ...props }) => (
   <Container {...props}>
     <Label>{name}</Label>
-
-    <Label>{unidade}</Label>
+    <MyLink to="/">
+      <Label>{unidade}</Label>
+    </MyLink>
 
     <Label>{date}</Label>
   </Container>

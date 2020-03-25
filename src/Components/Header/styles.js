@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: #9d0d62;
@@ -13,4 +14,15 @@ export const Container = styled.div`
 export const Label = styled.label`
   font-weight: bold;
   color: #fff;
+`;
+
+export const MyLink = styled(Link)`
+  text-decoration: none;
+  cursor: ${props => (props.cursor ? props.cursor : "default")};
+
+  :hover {
+    opacity: 0.7;
+
+    transition: opacity 0.5s;
+  }
 `;

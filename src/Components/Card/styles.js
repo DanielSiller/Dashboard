@@ -22,6 +22,7 @@ export const Container = styled.div`
     props.justifyItems ? props.justifyItems : "initial"};
   text-align: ${props => (props.textAlign ? props.textAlign : "initial")};
   min-height: ${props => (props.minHeight ? `${props.minHeight}%` : "")};
+  height: ${props => (props.height ? `${props.height}%` : "")};
 
   .img {
     max-width: 60px;
@@ -41,7 +42,10 @@ export const MyCard = styled.div`
   flex-direction: ${props =>
     props.flexDirection ? props.flexDirection : "column"};
   align-items: ${props => (props.alignItems ? props.alignItems : "center")};
-  text-align: center;
+  justify-content: ${props =>
+    props.justifyContent ? props.justifyContent : "initial"};
+  height: ${props => (props.height ? `${props.height}%` : "")};
+  width: ${props => (props.width ? `${props.width}%` : "auto")};
 `;
 
 export const MyLabel = styled.label`
@@ -69,6 +73,7 @@ export const MyOverviewContainer = styled.div`
   height: ${props => (props.height ? `${props.height}px` : "")};
   justify-content: ${props =>
     props.justifyContent ? props.justifyContent : "initial"};
+  width: ${props => (props.width ? `${props.width}%` : "auto")};
 `;
 
 export const MyImagensContainer = styled.div`

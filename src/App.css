@@ -16,9 +16,9 @@ body,
 body {
   background: #f6f7fb;
 }
-
 body,
 input,
 button {
-  font-family: "Montserrat";
+  font: 400 14px Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }

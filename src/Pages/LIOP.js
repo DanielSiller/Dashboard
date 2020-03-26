@@ -1,5 +1,6 @@
 import React from "react";
 
+import useQuery from "../hooks/useQuery";
 import Header from "../Components/Header";
 
 import {
@@ -12,13 +13,14 @@ import {
 import { Container, Body } from "../Components/Container";
 
 export default function LIOP() {
+  const query = useQuery();
   return (
     <Container>
       <Header name="LIOP" unidade="VIX" date="24/03/2020" />
       <Body>
         <CardContainer
           position="absolute"
-          gridTemplateColumns="100% 30%"
+          gridTemplateColumns="100% 100%"
           border="none"
           shadow="none"
           gap="23"
@@ -37,7 +39,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  100
+                  {query.get("in_preparation")}
                 </Label>
                 <Label color="000" marginTop="10">
                   Em Preparação
@@ -55,7 +57,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  20
+                  {query.get("in_transit")}
                 </Label>
                 <Label color="000" marginTop="10">
                   Em Transferência
@@ -73,7 +75,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  30
+                  {query.get("on_base")}
                 </Label>
                 <Label color="000" marginTop="10">
                   Na Base
@@ -91,7 +93,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  100
+                  {query.get("on_base")}
                 </Label>
                 <Label color="000" marginTop="10">
                   Entregues
@@ -104,28 +106,29 @@ export default function LIOP() {
             justifyItems="center"
             background="fff"
             padding="10"
+            height="100"
+            width="35"
           >
-            <Card>
+            <Card height="100" justifyContent="space-between">
               <Label fontsize="12" fontweight="bold">
                 Dashboard
-              </Label>
-              <Label fontweight="bold" marginbottom="10">
-                24/03/2020
               </Label>
               <Label fontweight="bold" marginbottom="5">
                 Adesão Mobile
               </Label>
               <Label marginbottom="5">30 Dias</Label>
-              <Label color="000" marginbottom="5">
-                mobile
+              <Label color="000" fontsize="16" marginbottom="5">
+                {query.get("mobile_30d")}
               </Label>
               <Label marginbottom="5">Mês Atual</Label>
-              <Label color="000">mobile2</Label>
+              <Label color="000" fontsize="16">
+                {query.get("mobile_month")}
+              </Label>
             </Card>
           </CardContainer>
         </CardContainer>
         <CardContainer
-          gridTemplateColumns="80% 45%"
+          gridTemplateColumns="100% 100%"
           marginTop="310"
           position="absolute"
           border="none"
@@ -148,7 +151,7 @@ export default function LIOP() {
                 color="000"
                 marginbottom="15"
               >
-                Total 30 Dias - orders_30
+                Total 30 Dias - {query.get("total_orders_30d")}
               </Label>
               <Label
                 fontweight="bold"
@@ -156,17 +159,17 @@ export default function LIOP() {
                 color="000"
                 marginbottom="15"
               >
-                Total Mês Atual - orders_month
+                Total Mês Atual - {query.get("total_orders_month")}
               </Label>
               <Label fontweight="bold" fontsize="14" color="000">
-                Entregues 30 Dias - delivered
+                Entregues 30 Dias - {query.get("delivered_30d")}
               </Label>
               <Label fontweight="bold" fontsize="14" color="000">
-                Entregues Mês Atual - delivered_month
+                Entregues Mês Atual - {query.get("delivered_month")}
               </Label>
             </CardContainer>
           </OverviewContainer>
-          <OverviewContainer alignItems="center">
+          <OverviewContainer alignItems="center" width="60">
             <Label fontweight="bold" marginbottom="20" fontsize="16">
               Pedidos na Base<Label fontsize="14">- Por Vencimento</Label>
             </Label>
@@ -176,15 +179,15 @@ export default function LIOP() {
               color="000"
               marginbottom="15"
             >
-              Vencendo Hoje - today
+              Vencendo Hoje - {query.get("onbase_expiring_today")}
             </Label>
             <Label fontweight="bold" fontsize="14" color="000">
-              Vencidos - expired
+              Vencidos - {query.get("onbase_overdue")}
             </Label>
           </OverviewContainer>
         </CardContainer>
         <CardContainer
-          gridTemplateColumns="30% 30% 30% 60%"
+          gridTemplateColumns="36% 36% 37% 37%"
           marginTop="445"
           position="absolute"
           border="none"
@@ -195,43 +198,45 @@ export default function LIOP() {
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label>- 30 Dias</Label>
             </Label>
-            <Label fontsize="14">general_sla</Label>
+            <Label fontsize="14">{query.get("generalsla_30d")}</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label>- Mês Atual</Label>
             </Label>
-            <Label fontsize="14">general_sla2</Label>
+            <Label fontsize="14">{query.get("generalsla_month")}</Label>
           </OverviewContainer>
           <OverviewContainer textAlign="center">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label>- 30 Dias</Label>
             </Label>
-            <Label fontsize="14">base_sla</Label>
+            <Label fontsize="14">{query.get("basesla_30d")}</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label>- Mês Atual</Label>
             </Label>
-            <Label fontsize="14">base_sla2</Label>
+            <Label fontsize="14">{query.get("basesla_month")}</Label>
           </OverviewContainer>
           <OverviewContainer textAlign="center">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label>- 30 Dias</Label>
             </Label>
-            <Label fontsize="14">otif</Label>
+            <Label fontsize="14">{query.get("otif_30d")}</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label>- Mês Atual</Label>
             </Label>
-            <Label fontsize="14">otif2</Label>
+            <Label fontsize="14">{query.get("otif_month")}</Label>
           </OverviewContainer>
-          <OverviewContainer textAlign="center">
+          <OverviewContainer textAlign="center" height="100">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Clientes<Label>- 3 Piores</Label>
             </Label>
-            <Label
-              fontsize="14"
-              fontweight="bold"
-              color="000"
-              marginbottom="40"
-            >
-              clients_sla
+            <Label fontsize="14" fontweight="bold" color="000">
+              {query.get("sla_by_clients")}
+            </Label>
+
+            <Label fontsize="14" fontweight="bold" color="000">
+              {query.get("sla_by_clients")}
+            </Label>
+            <Label fontsize="14" fontweight="bold" color="000">
+              {query.get("sla_by_clients")}
             </Label>
           </OverviewContainer>
         </CardContainer>

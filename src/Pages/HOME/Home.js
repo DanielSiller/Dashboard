@@ -1,10 +1,10 @@
 import React from "react";
 
-import Header from "../Components/Header";
-import { MyLink } from "../Components/Header/styles";
+import Header from "../../Components/Header";
+import { MyLink } from "../../Components/Header/styles";
 
-import { CardContainer, OverviewContainer, Label } from "../Components/Card";
-import { Container, Body } from "../Components/Container";
+import { CardContainer, OverviewContainer, Label } from "../../Components/Card";
+import { Container, Body } from "../../Components/Container";
 
 export default function Home() {
   return (

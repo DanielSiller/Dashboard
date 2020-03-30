@@ -1,7 +1,9 @@
 import React from "react";
+import { Bar } from 'react-chartjs-2'
 
-import useQuery from "../hooks/useQuery";
-import Header from "../Components/Header";
+import useQuery from "../../hooks/useQuery";
+import Header from "../../Components/Header";
+import setting from "./setting"
 
 import {
   CardContainer,
@@ -9,11 +11,86 @@ import {
   OverviewContainer,
   Label,
   ImagensContainer
-} from "../Components/Card";
-import { Container, Body } from "../Components/Container";
+} from "../../Components/Card";
+import { Container, Body } from "../../Components/Container";
 
 export default function LIOP() {
+
   const query = useQuery();
+
+  const queryJson = query.get("json");
+
+  const data = JSON.parse(queryJson)
+
+  const graphic = {
+    datasets: [{
+      label: 'Target',
+      type: 'line',
+      data: [95, 95, 95, 95],
+      fill: false,
+      borderColor: '#e6e6e6',
+      pointBorderColor: '#e6e6e6',
+      pointBackgroundColor: '#e6e6e6',
+      pointHoverBackgroundColor: '#e6e6e6',
+      pointHoverBorderColor: '#e6e6e6',
+      pointRadius: 0,
+    }, {
+      type: 'bar',
+      label: 'Clientes',
+      data: [data.sla_by_clients[0].value, data.sla_by_clients[1].value, data.sla_by_clients[2].value, 70],
+      fill: false,
+      backgroundColor: '#9d0d62',
+      hoverBackgroundColor: '#9d0d62',
+      hoverBorderColor: '#9d0d62',
+      yAxisID: 'y-axis-1'
+    }
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    labels: [data.sla_by_clients[0].name, data.sla_by_clients[1].name, data.sla_by_clients[2].name],
+    tooltips: {
+      mode: 'label'
+    },
+    elements: {
+      line: {
+        fill: false,
+
+      }
+    },
+    scales: {
+
+      xAxes: [
+        {
+          display: true,
+          gridLines: {
+            display: false
+          },
+
+          labels: [data.sla_by_clients[0].name, data.sla_by_clients[1].name, data.sla_by_clients[2].name],
+        }
+      ],
+      yAxes: [
+        {
+          type: 'linear',
+          display: true,
+          position: 'left',
+          id: 'y-axis-1',
+          gridLines: {
+            display: false
+          },
+          labels: {
+            show: true
+          },
+
+        }
+      ]
+    }
+  };
+
+
+
   return (
     <Container>
       <Header name="LIOP" unidade="VIX" date="24/03/2020" />
@@ -39,7 +116,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  {query.get("in_preparation")}
+                  {data.in_preparation}
                 </Label>
                 <Label color="000" marginTop="10">
                   Em Preparação
@@ -57,7 +134,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  {query.get("in_transit")}
+                  {data.in_transit}
                 </Label>
                 <Label color="000" marginTop="10">
                   Em Transferência
@@ -75,7 +152,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  {query.get("on_base")}
+                  {data.on_base}
                 </Label>
                 <Label color="000" marginTop="10">
                   Na Base
@@ -93,7 +170,7 @@ export default function LIOP() {
                   class="img"
                 />
                 <Label color="000" marginTop="10" fontweight="bold">
-                  {query.get("on_base")}
+                  {data.delivered}
                 </Label>
                 <Label color="000" marginTop="10">
                   Entregues
@@ -107,7 +184,7 @@ export default function LIOP() {
             background="fff"
             padding="10"
             height="100"
-            width="35"
+            width="41"
           >
             <Card height="100" justifyContent="space-between">
               <Label fontsize="12" fontweight="bold">
@@ -117,19 +194,19 @@ export default function LIOP() {
                 Adesão Mobile
               </Label>
               <Label marginbottom="5">30 Dias</Label>
-              <Label color="000" fontsize="16" marginbottom="5">
-                {query.get("mobile_30d")}
+              <Label color={setting.setColor('mobile_30d', data.mobile_30d)} fontsize="20" marginbottom="5">
+                {data.mobile_30d} %
               </Label>
               <Label marginbottom="5">Mês Atual</Label>
-              <Label color="000" fontsize="16">
-                {query.get("mobile_month")}
+              <Label color={setting.setColor('mobile_month', data.mobile_month)} fontsize="20">
+                {data.mobile_month} %
               </Label>
             </Card>
           </CardContainer>
         </CardContainer>
         <CardContainer
           gridTemplateColumns="100% 100%"
-          marginTop="310"
+          marginTop="300"
           position="absolute"
           border="none"
           shadow="none"
@@ -151,7 +228,7 @@ export default function LIOP() {
                 color="000"
                 marginbottom="15"
               >
-                Total 30 Dias - {query.get("total_orders_30d")}
+                Total 30 Dias - {data.total_orders_30d}
               </Label>
               <Label
                 fontweight="bold"
@@ -159,17 +236,17 @@ export default function LIOP() {
                 color="000"
                 marginbottom="15"
               >
-                Total Mês Atual - {query.get("total_orders_month")}
+                Total Mês Atual - {data.total_orders_month}
               </Label>
               <Label fontweight="bold" fontsize="14" color="000">
-                Entregues 30 Dias - {query.get("delivered_30d")}
+                Entregues 30 Dias - {data.delivered_30d}
               </Label>
               <Label fontweight="bold" fontsize="14" color="000">
-                Entregues Mês Atual - {query.get("delivered_month")}
+                Entregues Mês Atual - {data.delivered_month}
               </Label>
             </CardContainer>
           </OverviewContainer>
-          <OverviewContainer alignItems="center" width="60">
+          <OverviewContainer alignItems="center" width="67">
             <Label fontweight="bold" marginbottom="20" fontsize="16">
               Pedidos na Base<Label fontsize="14">- Por Vencimento</Label>
             </Label>
@@ -179,66 +256,64 @@ export default function LIOP() {
               color="000"
               marginbottom="15"
             >
-              Vencendo Hoje - {query.get("onbase_expiring_today")}
+              Vencendo Hoje - {data.onbase_expiring_today}
             </Label>
             <Label fontweight="bold" fontsize="14" color="000">
-              Vencidos - {query.get("onbase_overdue")}
+              Vencidos - {data.onbase_overdue}
             </Label>
           </OverviewContainer>
         </CardContainer>
         <CardContainer
-          gridTemplateColumns="36% 36% 37% 37%"
-          marginTop="445"
+          gridTemplateColumns="30% 30% 30% 37%"
+          marginTop="425"
           position="absolute"
           border="none"
           shadow="none"
           gap="24"
         >
-          <OverviewContainer textAlign="center">
+          <OverviewContainer textAlign="center" height="160" justifyContent='space-between'>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label>- 30 Dias</Label>
             </Label>
-            <Label fontsize="14">{query.get("generalsla_30d")}</Label>
+            <Label fontsize="30" color={setting.setColor('geral_30d', data.generalsla_30d)}>{data.generalsla_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label>- Mês Atual</Label>
             </Label>
-            <Label fontsize="14">{query.get("generalsla_month")}</Label>
+            <Label fontsize="30" color={setting.setColor('geral_month', data.generalsla_month)}>{data.generalsla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer textAlign="center">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="160">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label>- 30 Dias</Label>
             </Label>
-            <Label fontsize="14">{query.get("basesla_30d")}</Label>
+            <Label fontsize="30" color={setting.setColor('base_30d', data.basesla_30d)}>{data.basesla_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label>- Mês Atual</Label>
             </Label>
-            <Label fontsize="14">{query.get("basesla_month")}</Label>
+            <Label fontsize="30" color={setting.setColor('base_month', data.basesla_month)}>{data.basesla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer textAlign="center">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="160">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label>- 30 Dias</Label>
             </Label>
-            <Label fontsize="14">{query.get("otif_30d")}</Label>
+            <Label fontsize="30" color={setting.setColor('otif_30d', data.otif_30d)}>{data.otif_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label>- Mês Atual</Label>
             </Label>
-            <Label fontsize="14">{query.get("otif_month")}</Label>
+            <Label fontsize="30" color={setting.setColor('otif_month', data.otif_month)}>
+              {data.otif_month} %
+            </Label>
           </OverviewContainer>
-          <OverviewContainer textAlign="center" height="100">
-            <Label fontweight="bold" marginbottom="5" fontsize="14">
-              SLA Clientes<Label>- 3 Piores</Label>
-            </Label>
-            <Label fontsize="14" fontweight="bold" color="000">
-              {query.get("sla_by_clients")}
-            </Label>
+          <OverviewContainer textAlign="center" height="160" justifyContent='space-between'>
 
-            <Label fontsize="14" fontweight="bold" color="000">
-              {query.get("sla_by_clients")}
-            </Label>
-            <Label fontsize="14" fontweight="bold" color="000">
-              {query.get("sla_by_clients")}
-            </Label>
+            <Bar
+              data={graphic}
+              options={options}
+              width={80}
+              height={40}
+
+            />
           </OverviewContainer>
+
         </CardContainer>
       </Body>
     </Container>

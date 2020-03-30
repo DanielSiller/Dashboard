@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 
 import {
   CardContainer,
@@ -8,8 +8,8 @@ import {
   OverviewContainer,
   Label,
   ImagensContainer
-} from "../Components/Card";
-import { Container, Body } from "../Components/Container";
+} from "../../Components/Card";
+import { Container, Body } from "../../Components/Container";
 
 export default function Iconex() {
   return (

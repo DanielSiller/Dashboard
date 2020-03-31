@@ -17,41 +17,61 @@ import { Container, Body } from "../../Components/Container";
 export default function LIOP() {
 
   const query = useQuery();
+  var data
 
   const queryJson = query.get("json");
 
-  const data = JSON.parse(queryJson)
+  console.log(queryJson)
+
+  if (queryJson === null) {
+    data = "null"
+  } else {
+    data = JSON.parse(queryJson)
+  }
+
+  console.log(data)
+
+  let value = [];
+  let name = [];
+  let target = [];
 
   const graphic = {
     datasets: [{
-      label: 'Target',
+      label: 'Target 95%',
       type: 'line',
-      data: [95, 95, 95, 95],
+      data: [95],
+      lineTension: 0.1,
+      borderCapStyle: 'butt',
       fill: false,
-      borderColor: '#e6e6e6',
-      pointBorderColor: '#e6e6e6',
-      pointBackgroundColor: '#e6e6e6',
-      pointHoverBackgroundColor: '#e6e6e6',
-      pointHoverBorderColor: '#e6e6e6',
+      borderColor: '#949494',
+      pointBorderColor: '#949494',
+      pointBackgroundColor: '#949494',
+      pointHoverBackgroundColor: '#949494',
+      pointHoverBorderColor: '#949494',
       pointRadius: 0,
+      pointHoverRadius: 0,
     }, {
       type: 'bar',
       label: 'Clientes',
-      data: [data.sla_by_clients[0].value, data.sla_by_clients[1].value, data.sla_by_clients[2].value, 70],
+      data: [0],
       fill: false,
       backgroundColor: '#9d0d62',
       hoverBackgroundColor: '#9d0d62',
-      hoverBorderColor: '#9d0d62',
       yAxisID: 'y-axis-1'
-    }
+    },
+
     ]
   };
 
   const options = {
     responsive: true,
-    labels: [data.sla_by_clients[0].name, data.sla_by_clients[1].name, data.sla_by_clients[2].name],
     tooltips: {
       mode: 'label'
+    },
+    legend: {
+      "labels": {
+        fontColor: '#9d0d62'
+      }
     },
     elements: {
       line: {
@@ -68,7 +88,7 @@ export default function LIOP() {
             display: false
           },
 
-          labels: [data.sla_by_clients[0].name, data.sla_by_clients[1].name, data.sla_by_clients[2].name],
+          labels: ["labels"],
         }
       ],
       yAxes: [
@@ -89,11 +109,33 @@ export default function LIOP() {
     }
   };
 
+  if (data !== 'null') {
 
+    for (let i = 0; i < data.sla_by_clients.length; i++) {
+      target[i] = 95
+      graphic.datasets[0].data[i] = target[i]
 
+    }
+    for (let i = 0; i < data.sla_by_clients.length; i++) {
+      value[i] = data.sla_by_clients[i].value;
+      graphic.datasets[1].data[i] = value[i]
+
+      if (i < data.sla_by_clients.length) {
+        let b = i
+        b++
+        graphic.datasets[1].data[b] = 0
+
+      }
+    }
+    for (let i = 0; i < data.sla_by_clients.length; i++) {
+      name[i] = data.sla_by_clients[i].name;
+      options.scales.xAxes[0].labels[i] = name[i]
+    }
+  }
   return (
     <Container>
-      <Header name="LIOP" unidade="VIX" date="24/03/2020" />
+      <Header unidade={data.base_name} date={data.date} name="LIOP" height="18"
+        padding="20px 80px" />
       <Body>
         <CardContainer
           position="absolute"
@@ -101,7 +143,7 @@ export default function LIOP() {
           border="none"
           shadow="none"
           gap="23"
-          marginTop="110"
+          marginTop="60"
         >
           <OverviewContainer>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
@@ -184,7 +226,7 @@ export default function LIOP() {
             background="fff"
             padding="10"
             height="100"
-            width="41"
+            width="44"
           >
             <Card height="100" justifyContent="space-between">
               <Label fontsize="12" fontweight="bold">
@@ -205,14 +247,14 @@ export default function LIOP() {
           </CardContainer>
         </CardContainer>
         <CardContainer
-          gridTemplateColumns="100% 100%"
-          marginTop="300"
+          gridTemplateColumns="705px 100%"
+          marginTop="248"
           position="absolute"
           border="none"
           shadow="none"
           gap="24"
         >
-          <OverviewContainer alignItems="center">
+          <OverviewContainer alignItems="center" width='100' maxWidth='705'>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
               Pedidos <Label fontsize="14">- Visão Geral</Label>
             </Label>
@@ -221,6 +263,7 @@ export default function LIOP() {
               border="none"
               shadow="none"
               textAlign="center"
+              width='100'
             >
               <Label
                 fontweight="bold"
@@ -246,7 +289,7 @@ export default function LIOP() {
               </Label>
             </CardContainer>
           </OverviewContainer>
-          <OverviewContainer alignItems="center" width="67">
+          <OverviewContainer alignItems="center" maxWidth='450'>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
               Pedidos na Base<Label fontsize="14">- Por Vencimento</Label>
             </Label>
@@ -265,51 +308,53 @@ export default function LIOP() {
         </CardContainer>
         <CardContainer
           gridTemplateColumns="30% 30% 30% 37%"
-          marginTop="425"
+          marginTop="371"
           position="absolute"
           border="none"
           shadow="none"
           gap="24"
         >
-          <OverviewContainer textAlign="center" height="160" justifyContent='space-between'>
+          <OverviewContainer textAlign="center" height="180" justifyContent='space-between'>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
-              SLA Geral<Label>- 30 Dias</Label>
+              SLA Geral<Label> - 30 Dias</Label>
             </Label>
             <Label fontsize="30" color={setting.setColor('geral_30d', data.generalsla_30d)}>{data.generalsla_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
-              SLA Geral<Label>- Mês Atual</Label>
+              SLA Geral<Label> - Mês Atual</Label>
             </Label>
             <Label fontsize="30" color={setting.setColor('geral_month', data.generalsla_month)}>{data.generalsla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer justifyContent='space-between' textAlign="center" height="160">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="180">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
-              SLA Base<Label>- 30 Dias</Label>
+              SLA Base<Label> - 30 Dias</Label>
             </Label>
             <Label fontsize="30" color={setting.setColor('base_30d', data.basesla_30d)}>{data.basesla_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
-              SLA Base<Label>- Mês Atual</Label>
+              SLA Base<Label> - Mês Atual</Label>
             </Label>
             <Label fontsize="30" color={setting.setColor('base_month', data.basesla_month)}>{data.basesla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer justifyContent='space-between' textAlign="center" height="160">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="180">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
-              OTIF<Label>- 30 Dias</Label>
+              OTIF<Label> - 30 Dias</Label>
             </Label>
             <Label fontsize="30" color={setting.setColor('otif_30d', data.otif_30d)}>{data.otif_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
-              OTIF<Label>- Mês Atual</Label>
+              OTIF<Label> - Mês Atual</Label>
             </Label>
             <Label fontsize="30" color={setting.setColor('otif_month', data.otif_month)}>
               {data.otif_month} %
             </Label>
           </OverviewContainer>
-          <OverviewContainer textAlign="center" height="160" justifyContent='space-between'>
-
+          <OverviewContainer textAlign="center" height="217" justifyContent='space-between'>
+            <Label fontweight="bold" marginbottom="5" fontsize="14">
+              SLA Por Cliente<Label> - 3 Piores</Label>
+            </Label>
             <Bar
               data={graphic}
               options={options}
               width={80}
-              height={40}
+              height={50}
 
             />
           </OverviewContainer>

@@ -74,6 +74,8 @@ export const MyOverviewContainer = styled.div`
   justify-content: ${props =>
     props.justifyContent ? props.justifyContent : "initial"};
   width: ${props => (props.width ? `${props.width}%` : "auto")};
+  max-width: ${props => (props.maxWidth ? `${props.maxWidth}px` : "auto")};
+  min-width: ${props => (props.minWidth ? `${props.minWidth}px` : "auto")};
 `;
 
 export const MyImagensContainer = styled.div`

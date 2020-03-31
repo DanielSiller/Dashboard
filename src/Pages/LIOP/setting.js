@@ -9,8 +9,6 @@ function setColor(name, value) {
     { name: 'mobile_30d', deadline: 95, fail: 90 },
     { name: 'mobile_month', deadline: 95, fail: 90 },
   ];
-  console.log(name)
-  console.log(value)
   for (const limiter of limiters) {
     if (name === limiter.name) {
       if (value >= limiter.deadline) {

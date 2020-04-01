@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar } from 'react-chartjs-2'
+import { Bar, defaults } from 'react-chartjs-2'
 
 import useQuery from "../../hooks/useQuery";
 import Header from "../../Components/Header";
@@ -15,6 +15,8 @@ import {
 import { Container, Body } from "../../Components/Container";
 
 export default function LIOP() {
+
+
 
   const query = useQuery();
   var data
@@ -35,6 +37,8 @@ export default function LIOP() {
   let name = [];
   let target = [];
 
+  defaults.global.animation = false;
+
   const graphic = {
     datasets: [{
       label: 'Target 95%',
@@ -50,6 +54,7 @@ export default function LIOP() {
       pointHoverBorderColor: '#949494',
       pointRadius: 0,
       pointHoverRadius: 0,
+      yAxisID: 'y-axis-1'
     }, {
       type: 'bar',
       label: 'Clientes',
@@ -68,6 +73,7 @@ export default function LIOP() {
     tooltips: {
       mode: 'label'
     },
+
     legend: {
       "labels": {
         fontColor: '#9d0d62'

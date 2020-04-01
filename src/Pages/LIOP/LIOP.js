@@ -288,7 +288,7 @@ export default function LIOP() {
               </Label>
             </CardContainer>
           </OverviewContainer>
-          <OverviewContainer alignItems="center" maxWidth='450'>
+          <OverviewContainer alignItems="center" maxWidth='450' minWidth='450'>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
               Pedidos na Base<Label fontsize="14">- Por Vencimento</Label>
             </Label>

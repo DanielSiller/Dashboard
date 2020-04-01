@@ -72,6 +72,7 @@ export default function LIOP() {
       "labels": {
         fontColor: '#9d0d62'
       }
+
     },
     elements: {
       line: {
@@ -141,7 +142,7 @@ export default function LIOP() {
           gridTemplateColumns="100% 100%"
           border="none"
           shadow="none"
-          gap="23"
+          gap="25"
           marginTop="110"
         >
           <OverviewContainer>
@@ -225,7 +226,7 @@ export default function LIOP() {
             background="fff"
             padding="10"
             height="100"
-            width="44"
+            width="45"
           >
             <Card height="100" justifyContent="space-between">
               <Label fontsize="12" fontweight="bold">
@@ -251,7 +252,7 @@ export default function LIOP() {
           position="absolute"
           border="none"
           shadow="none"
-          gap="24"
+          gap="25"
         >
           <OverviewContainer alignItems="center" width='100' maxWidth='705'>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
@@ -288,7 +289,7 @@ export default function LIOP() {
               </Label>
             </CardContainer>
           </OverviewContainer>
-          <OverviewContainer alignItems="center" maxWidth='450' minWidth='450'>
+          <OverviewContainer alignItems="center" maxWidth='465' minWidth='465'>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
               Pedidos na Base<Label fontsize="14">- Por Vencimento</Label>
             </Label>
@@ -306,14 +307,14 @@ export default function LIOP() {
           </OverviewContainer>
         </CardContainer>
         <CardContainer
-          gridTemplateColumns="30% 30% 30% 37%"
+          gridTemplateColumns="243px 243px 243px 40%"
           marginTop="425"
           position="absolute"
           border="none"
           shadow="none"
-          gap="24"
+          gap="25"
         >
-          <OverviewContainer textAlign="center" height="217" justifyContent='space-between'>
+          <OverviewContainer textAlign="center" height="215" justifyContent='space-between'>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label> - 30 Dias</Label>
             </Label>
@@ -323,7 +324,7 @@ export default function LIOP() {
             </Label>
             <Label fontsize="40" color={setting.setColor('geral_month', data.generalsla_month)}>{data.generalsla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer justifyContent='space-between' textAlign="center" height="217">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="215" >
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label> - 30 Dias</Label>
             </Label>
@@ -333,7 +334,7 @@ export default function LIOP() {
             </Label>
             <Label fontsize="40" color={setting.setColor('base_month', data.basesla_month)}>{data.basesla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer justifyContent='space-between' textAlign="center" height="217">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="215" >
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label> - 30 Dias</Label>
             </Label>
@@ -345,15 +346,13 @@ export default function LIOP() {
               {data.otif_month} %
             </Label>
           </OverviewContainer>
-          <OverviewContainer textAlign="center" height="217" justifyContent='space-between'>
+          <OverviewContainer textAlign="center" height="215" maxWidth='390' minWidth='390' justifyContent='space-between'>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Por Cliente<Label> - 3 Piores</Label>
             </Label>
             <Bar
               data={graphic}
               options={options}
-              width={80}
-              height={50}
 
             />
           </OverviewContainer>

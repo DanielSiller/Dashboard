@@ -134,8 +134,7 @@ export default function LIOP() {
   }
   return (
     <Container>
-      <Header unidade={data.base_name} date={data.date} name="LIOP" height="18"
-        padding="20px 80px" />
+      <Header unidade={data.base_name} date={data.date} name="LIOP" />
       <Body>
         <CardContainer
           position="absolute"
@@ -143,7 +142,7 @@ export default function LIOP() {
           border="none"
           shadow="none"
           gap="23"
-          marginTop="60"
+          marginTop="110"
         >
           <OverviewContainer>
             <Label fontweight="bold" marginbottom="20" fontsize="16">
@@ -236,11 +235,11 @@ export default function LIOP() {
                 Adesão Mobile
               </Label>
               <Label marginbottom="5">30 Dias</Label>
-              <Label color={setting.setColor('mobile_30d', data.mobile_30d)} fontsize="20" marginbottom="5">
+              <Label color={setting.setColor('mobile_30d', data.mobile_30d)} fontsize="25" marginbottom="5">
                 {data.mobile_30d} %
               </Label>
               <Label marginbottom="5">Mês Atual</Label>
-              <Label color={setting.setColor('mobile_month', data.mobile_month)} fontsize="20">
+              <Label color={setting.setColor('mobile_month', data.mobile_month)} fontsize="25">
                 {data.mobile_month} %
               </Label>
             </Card>
@@ -248,7 +247,7 @@ export default function LIOP() {
         </CardContainer>
         <CardContainer
           gridTemplateColumns="705px 100%"
-          marginTop="248"
+          marginTop="300"
           position="absolute"
           border="none"
           shadow="none"
@@ -308,41 +307,41 @@ export default function LIOP() {
         </CardContainer>
         <CardContainer
           gridTemplateColumns="30% 30% 30% 37%"
-          marginTop="371"
+          marginTop="425"
           position="absolute"
           border="none"
           shadow="none"
           gap="24"
         >
-          <OverviewContainer textAlign="center" height="180" justifyContent='space-between'>
+          <OverviewContainer textAlign="center" height="217" justifyContent='space-between'>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label> - 30 Dias</Label>
             </Label>
-            <Label fontsize="30" color={setting.setColor('geral_30d', data.generalsla_30d)}>{data.generalsla_30d} %</Label>
+            <Label fontsize="40" color={setting.setColor('geral_30d', data.generalsla_30d)}>{data.generalsla_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Geral<Label> - Mês Atual</Label>
             </Label>
-            <Label fontsize="30" color={setting.setColor('geral_month', data.generalsla_month)}>{data.generalsla_month} %</Label>
+            <Label fontsize="40" color={setting.setColor('geral_month', data.generalsla_month)}>{data.generalsla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer justifyContent='space-between' textAlign="center" height="180">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="217">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label> - 30 Dias</Label>
             </Label>
-            <Label fontsize="30" color={setting.setColor('base_30d', data.basesla_30d)}>{data.basesla_30d} %</Label>
+            <Label fontsize="40" color={setting.setColor('base_30d', data.basesla_30d)}>{data.basesla_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               SLA Base<Label> - Mês Atual</Label>
             </Label>
-            <Label fontsize="30" color={setting.setColor('base_month', data.basesla_month)}>{data.basesla_month} %</Label>
+            <Label fontsize="40" color={setting.setColor('base_month', data.basesla_month)}>{data.basesla_month} %</Label>
           </OverviewContainer>
-          <OverviewContainer justifyContent='space-between' textAlign="center" height="180">
+          <OverviewContainer justifyContent='space-between' textAlign="center" height="217">
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label> - 30 Dias</Label>
             </Label>
-            <Label fontsize="30" color={setting.setColor('otif_30d', data.otif_30d)}>{data.otif_30d} %</Label>
+            <Label fontsize="40" color={setting.setColor('otif_30d', data.otif_30d)}>{data.otif_30d} %</Label>
             <Label fontweight="bold" marginbottom="5" fontsize="14">
               OTIF<Label> - Mês Atual</Label>
             </Label>
-            <Label fontsize="30" color={setting.setColor('otif_month', data.otif_month)}>
+            <Label fontsize="40" color={setting.setColor('otif_month', data.otif_month)}>
               {data.otif_month} %
             </Label>
           </OverviewContainer>
